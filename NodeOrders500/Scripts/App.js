@@ -1,6 +1,8 @@
-﻿var uri = 'api/Orders';
+﻿// url for performing database api functions
+var uri = 'api/Orders';
 
 $(document).ready(function () {
+    // creates drop down list for salespeople and stores on load
     GetPeopleData();
     GetCityData();
 });
@@ -12,7 +14,7 @@ function GetPeopleData() {
             // appends sales people to dropdown list
             $('<select>', { text: "FirstName LastName" }).appendTo($('#spID'));
             $.each(data, function (key, item) {
-                // Add a list item for the product.
+                // adds option for each salesperson
                 $('<option>', { text: formatItem(item) }).appendTo($('#spID'));
             });
         });
@@ -25,45 +27,53 @@ function GetCityData() {
             // appends cities people to dropdown list
             $('<select>', { text: "City" }).appendTo($('#sID'));
             $.each(data, function (key, item) {
+                // adds option for each store
                 $('<option>', { text: item.City }).appendTo($('#sID'));
             });
         });
 }
 
 function GetPersonDetails() {
-    // Send an AJAX request
+    // sets selected salesperson id from drop down as parameter
     var personID = $('#spID').val()
+    // Send an AJAX request with selected id parameter
     $.getJSON(uri + '/GetEmpSales/' + personID)
         .done(function (data) {
-            $('#persondetails').text(data);
+            // returns details about the salesperson
+            $('#persondetails').text("This employee has sold a total of $" + data + " for the year");
         });
 }
 
 function GetStoreDetails() {
-    // Send an AJAX request
+    // sets selected store id from drop down as parameter
     var storeID = $('#sID').val()
+    // Send an AJAX request with selected id parameter
     $.getJSON(uri + '/GetStoreSales/' + storeID)
         .done(function (data) {
-            $('#storedetails').text(data);
+            // returns details about the store
+            $('#storedetails').text("This store has sold a total of $" + data + " for the year");
         });
 }
 
 function GetMostSales() {
     // Send an AJAX request
     $.getJSON(uri + '/GetHighestSales')
+        // Send an AJAX request to fill the table with data
         .done(function (data) {
-            $('<li>', { text: "City: SalesCount" }).appendTo($('#mostsales'));
+            $('#table').text("City | Sales Count");
             $.each(data, function (key, item) {
-                console.log(item)
+                // appends each store with their recorded sales to a list in descending order
                 $('<li>', { text: formatItem2(item) }).appendTo($('#mostsales'));
             });
         });
 }
 
 function formatItem(item) {
+    // formats salesperson data to display first and last name
     return item.FirstName + ' ' + item.LastName;
 }
 
 function formatItem2(item) {
-    return item.m_Item3 + ' ' + item.m_Item2;
+    // formats list data to display store name and their recorded sales
+    return item.m_Item3 + ' | ' + item.m_Item2;
 }

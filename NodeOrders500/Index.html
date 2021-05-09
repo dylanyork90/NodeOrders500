@@ -9,8 +9,10 @@
 <body>
 
     <div>
-        <p>Highest sales</p>
+        <h2>Highest CD markup sales for each store</h2>
+        <h3>Click to show sorted total number of CD sales above $13 for each store</h3>
         <button id="allsales" onclick="GetMostSales();">Get Markups</button>
+        <p id="table"></p>
         <ul id="mostsales">
 
         </ul>
@@ -18,6 +20,8 @@
     </div>
 
     <div>
+        <h2>Employee Sales Performance</h2>
+        <h3>Select an employee to show their total sales amount for the year</h3>
         <label for="salespeople">Select a salesperson:</label>
         <select name="salespeople" id="spID">
         </select>
@@ -27,6 +31,8 @@
     </div>
 
     <div>
+        <h2>Store Sales Performance</h2>
+        <h3>Select a location to show the total sales amount for that store</h3>
         <label for="stores">Select a store:</label>
         <select name="stores" id="sID">
         </select>
