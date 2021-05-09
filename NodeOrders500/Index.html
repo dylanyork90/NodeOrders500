@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>500 Orders</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="Scripts/App.js"></script>
+</head>
+<body>
+
+    <div>
+        <p>Highest sales</p>
+        <button id="allsales" onclick="GetMostSales();">Get Markups</button>
+        <ul id="mostsales">
+
+        </ul>
+
+    </div>
+
+    <div>
+        <label for="salespeople">Select a salesperson:</label>
+        <select name="salespeople" id="spID">
+        </select>
+        <button id="personbtn" onclick="GetPersonDetails();">Get Employee Details</button>
+
+        <p id="persondetails"></p>
+    </div>
+
+    <div>
+        <label for="stores">Select a store:</label>
+        <select name="stores" id="sID">
+        </select>
+        <button id="storebtn" onclick="GetStoreDetails();">Get Store Details</button>
+
+        <p id="storedetails"></p>
+    </div>
+
+</body>
+</html>
